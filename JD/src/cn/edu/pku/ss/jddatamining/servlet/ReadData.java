@@ -49,19 +49,20 @@ public class ReadData extends HttpServlet {
 		Scanner file;
 		String lines;
 		int item_count = 0;
-		
+		//获取当前需要文件的绝对路径
+		System.out.println(request.getSession().getServletContext().getRealPath("/help.txt"));
 		try {
 			if (type.equals("cpu_analysis_combo")) {
 				file = new Scanner(
 						new File(request.getRealPath("\\data\\statistics_base_CPU.txt")));
-				ArrayList<String> cpu_type = new ArrayList();
-				ArrayList<Integer> cpu_num = new ArrayList();
-				ArrayList<Integer> sale_num = new ArrayList();
-				ArrayList<Double> average_price = new ArrayList();
+				ArrayList<String> cpu_type = new ArrayList<String>();
+				ArrayList<Integer> cpu_num = new ArrayList<Integer>();
+				ArrayList<Integer> sale_num = new ArrayList<Integer>();
+				ArrayList<Double> average_price = new ArrayList<Double>();
 				while (file.hasNext()) {
 					String[] line;
-					lines = file.nextLine();
-					line = lines.split(";");
+					lines = file.nextLine();//读取一行数据
+					line = lines.split(";");//
 					for (int i = 0; i < line.length; i++) {
 						String[] words = line[i].split(",");
 						item_count++;
