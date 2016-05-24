@@ -54,7 +54,7 @@ public class ReadData extends HttpServlet {
 		try {
 			if (type.equals("cpu_analysis_combo")) {
 				file = new Scanner(
-						new File(request.getRealPath("\\data\\statistics_base_CPU.txt")));
+						new File(request.getSession().getServletContext().getRealPath("/data/statistics_base_CPU.txt")));
 				ArrayList<String> cpu_type = new ArrayList<String>();
 				ArrayList<Integer> cpu_num = new ArrayList<Integer>();
 				ArrayList<Integer> sale_num = new ArrayList<Integer>();
@@ -81,13 +81,14 @@ public class ReadData extends HttpServlet {
 				request.getRequestDispatcher("cpu_analysis_combo.jsp").forward(
 						request, response);
 			}else if(type.equals("statistics_base_brand_combo")|| type.equals("sale_share")){//TXT换行有问题
-				String path = request.getRealPath("\\data\\statistics_base_brand.txt");
+				String path = request.getSession().getServletContext().getRealPath("/data/statistics_base_brand.txt");
+				System.out.println(path);
 				file = new Scanner(new File(path));
-				ArrayList<String> brand_name = new ArrayList();
-				ArrayList<Integer> sale_num = new ArrayList();
-				ArrayList<Double> average_price = new ArrayList();
-				ArrayList<Double> sale_share = new ArrayList();
-				ArrayList<Double> comment_pencentage = new ArrayList();
+				ArrayList<String> brand_name = new ArrayList<String>();
+				ArrayList<Integer> sale_num = new ArrayList<Integer>();
+				ArrayList<Double> average_price = new ArrayList<Double>();
+				ArrayList<Double> sale_share = new ArrayList<Double>();
+				ArrayList<Double> comment_pencentage = new ArrayList<Double>();
 				while (file.hasNext()) {
 					String[] line;
 					lines = file.nextLine();
@@ -119,10 +120,10 @@ public class ReadData extends HttpServlet {
 				}
 					
 			}else if(type.equals("price_range")){
-				String path = request.getRealPath("\\data\\statistics_base_price.txt");
+				String path = request.getSession().getServletContext().getRealPath("/data/statistics_base_price.txt");
 				file = new Scanner(new File(path));
-				ArrayList<String> range_name      = new ArrayList();
-				ArrayList<Integer> range_sale_num = new ArrayList();
+				ArrayList<String> range_name      = new ArrayList<String>();
+				ArrayList<Integer> range_sale_num = new ArrayList<Integer>();
 				String[][] brand_name      = new String[50][50];
 				double[][] brand_share     = new double[50][50];
 				int list_num =0;
@@ -157,13 +158,13 @@ public class ReadData extends HttpServlet {
 				request.getRequestDispatcher("price_range.jsp").forward(
 						request, response);
 			}else if(type.equals("size_analysis_combo")){
-				String path = request.getRealPath("\\data\\statistics_base_size.txt");
+				String path = request.getSession().getServletContext().getRealPath("/data/statistics_base_size.txt");
 				file = new Scanner(
 						new File(path));
-				ArrayList<String> size_name = new ArrayList();
-				ArrayList<Integer> sale_num = new ArrayList();
-				ArrayList<Integer> type_num = new ArrayList();
-				ArrayList<Double> average_price = new ArrayList();
+				ArrayList<String> size_name = new ArrayList<String>();
+				ArrayList<Integer> sale_num = new ArrayList<Integer>();
+				ArrayList<Integer> type_num = new ArrayList<Integer>();
+				ArrayList<Double> average_price = new ArrayList<Double>();
 				
 				while (file.hasNext()) {
 					String[] line;

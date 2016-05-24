@@ -149,4 +149,12 @@ public class DBManage {
 		initTable_items();
 		return bRet;
 	}
+	
+	public static void main(String[] args) {
+		DBManage dbm = new DBManage();
+		boolean con = dbm.createSchema();
+		if(con==true){
+			System.out.println("链接成功");
+		}
+	}
 }
